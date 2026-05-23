@@ -1,0 +1,93 @@
+@if(showSuccessAlert()){
+<div class="alert alert-success">!Subscripcion exitosa!</div>
+}
+<div class="card">
+  <div class="card-header">Subscribete a nuesta comunidad</div>
+  <div class="card-body">
+    <form (submit)="onSubmit($event)">
+      <!-- First Name -->
+      <div class="row">
+        <label for="first-name" class="row-label"></label>
+        <div class="row-value">
+          <input
+            type="text"
+            id="first-name"
+            class="form-control"
+            [field]="subscribeForm.firstName"
+            placeholder="Nombre"
+          />
+        </div>
+        @if(subscribeForm.firstName().invalid() &&
+        subscribeForm.firstName().touched()){
+        <div class="alert alert-danger">
+          @for (error of subscribeForm.firstName().errors(); track error.kind){
+          <div>{{error.message}}</div>
+          }
+        </div>
+        }
+      </div>
+      <!-- Last Name -->
+      <div class="row">
+        <label for="last-name" class="row-label"></label>
+        <div class="row-value">
+          <input
+            type="text"
+            id="last-name"
+            class="form-control"
+            [field]="subscribeForm.lastName"
+            placeholder="Apellido"
+          />
+        </div>
+        @if(subscribeForm.lastName().invalid() &&
+        subscribeForm.lastName().touched()){
+        <div class="alert alert-danger">
+          @for (error of subscribeForm.lastName().errors(); track error.kind){
+          <div>{{error.message}}</div>
+          }
+        </div>
+        }
+      </div>
+      <!-- Age -->
+      <div class="row">
+        <label for="age" class="row-label"></label>
+        <div class="row-value">
+          <input
+            type="number"
+            id="age"
+            class="form-control"
+            [field]="subscribeForm.age"
+            placeholder="Edad"
+          />
+        </div>
+        @if(subscribeForm.age().invalid() && subscribeForm.age().touched()){
+        <div class="alert alert-danger">
+          @for (error of subscribeForm.age().errors(); track error.kind){
+          <div>{{error.message}}</div>
+          }
+        </div>
+        }
+      </div>
+      <!-- Email -->
+      <div class="row">
+        <label for="email" class="row-label"></label>
+        <div class="row-value">
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [field]="subscribeForm.email"
+            placeholder="Correo"
+          />
+        </div>
+        @if(subscribeForm.email().invalid() && subscribeForm.email().touched()){
+        <div class="alert alert-danger">
+          @for (error of subscribeForm.email().errors(); track error.kind){
+          <div>{{error.message}}</div>
+          }
+        </div>
+        }
+      </div>
+      <button [disabled]="subscribeForm().invalid()">Subscribirse</button>
+    </form>
+  </div>
+</div>
