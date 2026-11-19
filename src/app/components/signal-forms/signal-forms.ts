@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  inject,
   signal
 } from "@angular/core";
 import { form, FormField } from "@angular/forms/signals";
@@ -10,7 +12,7 @@ import { initialData, subcriptionSchema, Subscription } from "../subscription";
   selector: "app-signal-forms",
   imports: [FormField, RatingControl],
   templateUrl: "./signal-forms.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: ``,
 })
 export class SignalForms {
@@ -19,7 +21,7 @@ export class SignalForms {
   subscribeForm = form(this.subscribeModel, subcriptionSchema);
 
   showSuccessAlert = signal<boolean>(false);
-
+  
   onSubmit(event: Event) {
     event.preventDefault();
     console.log(this.subscribeForm().value());
