@@ -11,7 +11,7 @@ import { FormValueControl } from '@angular/forms/signals';
         class="star"
         [class.filled]="star <= value()"
         [disabled]="disabled()"
-        (click)="value.set(star)"
+        (click)="select(star)"
       >
         ★
       </button>
@@ -28,4 +28,9 @@ export class RatingControl implements FormValueControl<number> {
   protected readonly stars = computed(() =>
     Array.from({ length: this.max() ?? 5 }, (_, index) => index + 1),
   );
+
+  protected select(star: number): void {
+    this.value.set(star === this.value() ? 0 : star);
+    this.touch.emit();
+  }
 }
