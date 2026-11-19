@@ -13,12 +13,14 @@ export interface Subscription {
   firstName: string;
   lastName: string;
   age: number;
+  rating: number;
 }
 export const initialData: Subscription = {
   email: '',
   firstName: '',
   lastName: '',
   age: NaN,
+  rating: 0,
 };
 export const subcriptionSchema = schema<Subscription>((rootPath) => {
   required(rootPath.email, {
@@ -34,6 +36,9 @@ export const subcriptionSchema = schema<Subscription>((rootPath) => {
   min(rootPath.age, 0, { message: 'La edad no puede ser negativa' });
 
   max(rootPath.age, 120, { message: 'Por favor ingesa una edad valida' });
+
+  min(rootPath.rating, 1, { message: 'Por favor califica nuestra comunidad' });
+  max(rootPath.rating, 5);
 
   nameValidator(rootPath.firstName, {
     message: 'Por favor ingresa un nombre valido',
