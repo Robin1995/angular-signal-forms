@@ -87,6 +87,20 @@
         </div>
         }
       </div>
+      <!-- Rating: custom control (FormValueControl) bound with the same [formField] -->
+      <div class="row">
+        <span class="row-label">¿Qué tan interesado estás?</span>
+        <div class="row-value">
+          <app-rating-control [formField]="subscribeForm.rating" />
+        </div>
+        @if(subscribeForm.rating().invalid() && subscribeForm.rating().touched()){
+        <div class="alert alert-danger">
+          @for (error of subscribeForm.rating().errors(); track error.kind){
+          <div>{{error.message}}</div>
+          }
+        </div>
+        }
+      </div>
       <button [disabled]="subscribeForm().invalid()">Subscribirse</button>
     </form>
   </div>

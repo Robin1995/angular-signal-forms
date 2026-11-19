@@ -1,0 +1,29 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.star {
+  width: auto;
+  margin: 0;
+  padding: 0 0.15rem;
+  background: transparent;
+  border: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star:hover,
+.star.filled {
+  background: transparent;
+  color: #f5b301;
+}
+
+.star:disabled {
+  background: transparent;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
